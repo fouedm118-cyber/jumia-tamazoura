@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جوميا جملة تامزوغة | Jumia Tamazougha Gros - B2B</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
+  body { background: #f4f4f4; color: #282828; min-height: 100vh; display: flex; flex-direction: column; }
+  
+  /* Top Bar */
+  .top-bar { background: #313133; color: #fff; font-size: 11px; padding: 6px 12px; display: flex; justify-content: space-between; align-items: center; text-align: center; flex-wrap: wrap; gap: 4px; }
+  .top-bar span { color: #f68b1e; font-weight: 700; }
+
+  /* Header */
+  header { background: #fff; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px; }
+  .logo-area { display: flex; align-items: center; gap: 8px; }
+  .logo-text { font-weight: 900; font-size: 18px; color: #f68b1e; letter-spacing: -0.5px; line-height: 1; cursor: pointer; }
+  .logo-sub { font-size: 8px; color: #606060; font-weight: 700; }
+  
+  .flag-btn { background: #f9f9f9; border: 1px solid #ddd; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+  .flag-btn:hover { background: #fff3e0; border-color: #f68b1e; }
+
+  /* Search */
+  .search-container { flex: 1; min-width: 180px; position: relative; display: flex; }
+  .search-container input { width: 100%; padding: 8px 12px 8px 40px; border: 1px solid #d5d5d5; border-radius: 4px; font-size: 12px; outline: none; background: #fff; }
+  .search-container input:focus { border-color: #f68b1e; }
+  .search-btn-icon { position: absolute; left: 0; top: 0; bottom: 0; width: 38px; background: #f68b1e; border: none; border-top-left-radius: 4px; border-bottom-left-radius: 4px; color: #fff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+  /* Header Actions */
+  .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .action-btn { background: #f9f9f9; border: 1px solid #eee; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 11px; color: #313133; display: flex; align-items: center; gap: 4px; transition: 0.2s; }
+  .action-btn:hover { color: #f68b1e; border-color: #f68b1e; background: #fff; }
+  .cart-badge { background: #f68b1e; color: #fff; font-size: 9px; padding: 1px 5px; border-radius: 8px; font-weight: 900; }
+
+  /* Container */
+  .container { max-width: 1280px; margin: 14px auto; padding: 0 10px; flex: 1; width: 100%; }
+  .notice { background: #fff3e0; border: 1px solid #ffe0b2; color: #e65100; padding: 8px 12px; border-radius: 4px; margin-bottom: 14px; text-align: center; font-weight: 700; font-size: 11px; }
+
+  /* Categories */
+  .cats { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 16px; scrollbar-width: none; }
+  .cats::-webkit-scrollbar { display: none; }
+  .cat-btn { background: #fff; border: 1px solid #e5e5e5; padding: 6px 14px; border-radius: 4px; cursor: pointer; white-space: nowrap; font-weight: 700; font-size: 11px; color: #313133; transition: 0.2s; }
+  .cat-btn:hover { border-color: #f68b1e; color: #f68b1e; }
+  .cat-btn.active { background: #f68b1e; color: #fff; border-color: #f68b1e; }
+
+  /* Grid & Cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  @media(min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; } }
+  
+  .card { background: #fff; border: 1px solid #eee; border-radius: 4px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; }
+  .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-color: #ddd; }
+  
+  .card-img-box { height: 120px; background: #fafafa; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; overflow: hidden; cursor: pointer; border-radius: 4px; border: 1px dashed #ddd; }
+  .card-img-box img { height: 100%; width: 100%; object-fit: cover; }
+  
+  .brand-name { font-size: 9px; color: #707070; font-weight: 700; text-transform: uppercase; }
+  .card h3 { font-size: 11px; font-weight: 700; margin: 2px 0 4px 0; color: #313133; height: 30px; overflow: hidden; cursor: pointer; }
+  .card h3:hover { color: #f68b1e; }
+  .box-details-badge { background: #e3f2fd; color: #0d47a1; font-size: 9px; font-weight: 700; padding: 3px 6px; border-radius: 3px; margin-bottom: 6px; display: inline-block; }
+  
+  .price { color: #313133; font-size: 14px; font-weight: 900; margin-bottom: 6px; }
+  
+  .qty-control { display: flex; align-items: center; justify-content: space-between; background: #f9f9f9; border-radius: 4px; padding: 2px; margin-bottom: 6px; border: 1px solid #ddd; }
+  .qty-btn { background: #fff; border: 1px solid #ccc; width: 26px; height: 24px; border-radius: 3px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #313133; font-size: 13px; }
+  .qty-btn:hover { background: #f68b1e; color: #fff; border-color: #f68b1e; }
+  .qty-input { width: 36px; text-align: center; border: none; background: transparent; font-weight: 800; font-size: 11px; outline: none; }
+
+  .btn { background: #f68b1e; color: #fff; border: none; padding: 8px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: 700; font-size: 11px; text-align: center; transition: 0.2s; }
+  .btn:hover { background: #e07d15; }
+  .btn:active { transform: scale(0.98); }
+
+  /* Toast Notification */
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: #313133; color: #fff; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 700; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border-right: 4px solid #f68b1e; transition: 0.3s ease; opacity: 0; pointer-events: none; }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* Modals */
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(2px); z-index: 1000; justify-content: center; align-items: center; padding: 10px; }
+  .modal-content { background: #fff; width: 100%; max-width: 500px; padding: 18px; border-radius: 6px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
+  .modal-header h3 { font-weight: 800; font-size: 14px; color: #313133; }
+  .close-btn { background: #f4f4f4; border: none; width: 26px; height: 26px; border-radius: 50%; font-size: 13px; cursor: pointer; font-weight: bold; }
+  .close-btn:hover { background: #e0e0e0; }
+  
+  label { display: block; font-size: 11px; font-weight: 700; color: #313133; margin-bottom: 3px; }
+  input, select, textarea { width: 100%; padding: 8px 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 11px; outline: none; background: #fff; }
+  input:focus, select:focus, textarea:focus { border-color: #f68b1e; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 10px; }
+  th, td { border: 1px solid #ddd; padding: 5px; text-align: right; }
+  th { background: #f9f9f9; font-weight: 700; color: #555; }
+
+  .auth-tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 12px; }
+  .auth-tab { flex: 1; text-align: center; padding: 7px; font-weight: 700; font-size: 11px; cursor: pointer; color: #777; }
+  .auth-tab.active { color: #f68b1e; border-bottom: 2px solid #f68b1e; margin-bottom: -2px; }
+
+  footer { background: #222; color: #aaa; text-align: center; padding: 14px; margin-top: 30px; font-size: 10px; border-top: 3px solid #f68b1e; }
+
+  @media print {
+    body * { visibility: hidden; }
+    #invoicePrintArea, #invoicePrintArea * { visibility: visible; }
+    #invoicePrintArea { position: fixed; inset: 0; background: #fff; padding: 15px; z-index: 9999; }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="toastBox" class="toast"></div>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div>🔥 التزويد بالجملة الحصري لتجار <span>بلدية تامزوغة</span> (عين تموشنت)</div>
+  <div>الحد الأدنى للطلب: 15,000 دج | التوصيل السريع</div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="logo-area">
+    <button type="button" class="flag-btn" id="btnAdminFlag" title="لوحة التحكم الإدارية والطلبات">🇩🇿</button>
+    <div id="btnLogoHome" style="cursor:pointer;">
+      <div class="logo-text">JUMIA <span style="font-size:10px; color:#313133; font-weight:700;">Gros B2B</span></div>
+      <div class="logo-sub">تامزوغة للتوزيع</div>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="ابحث عن منتج، علامة تجارية...">
+    <button type="button" class="search-btn-icon" id="btnSearch">🔍</button>
+  </div>
+
+  <div class="header-actions">
+    <button type="button" class="action-btn" id="btnAccount">👤 <span id="accountNavLabel">حسابي</span></button>
+    <button type="button" class="action-btn" id="btnCart">🛒 السلة <span class="cart-badge" id="cartCount">0</span></button>
+    <button type="button" class="action-btn" id="btnInvoices">🧾 فواتيري</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="notice">
+    📍 مخصص حصرياً للمحلات، السوبيرات، والملبنات في تامزوغة | الطلبيات فوق 50,000 دج توصيلها مجاني!
+  </div>
+
+  <div class="cats" id="catsContainer"></div>
+  <div class="grid" id="productsGrid"></div>
+</div>
+
+<footer>
+  © 2026 Jumia Tamazougha Gros B2B - جميع الحقوق محفوظة لتجار بلدية تامزوغة، ولاية عين تموشنت
+</footer>
+
+<!-- PRODUCT DETAILS MODAL -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modalProdTitle">تفاصيل المنتج</h3>
+      <button type="button" class="close-btn" onclick="closeModal('productModal')">✕</button>
+    </div>
+    <div style="text-align:center; margin-bottom:10px;">
+      <img id="modalProdImg" src="" alt="" style="max-height:160px; max-width:100%; object-fit:cover; border-radius:4px;">
+    </div>
+    <div style="font-size:11px; color:#444; line-height:1.6;">
+      <p><strong>العلامة التجارية:</strong> <span id="modalProdBrand" style="color:#f68b1e; font-weight:700;"></span></p>
+      <p style="margin-top:3px;"><strong>طريقة التعبئة والعلب:</strong> <span id="modalProdBoxInfo" style="color:#0d47a1; font-weight:700;"></span></p>
+      <p style="margin-top:3px;"><strong>سعر الجملة:</strong> <span id="modalProdPrice" style="color:#f68b1e; font-weight:900; font-size:14px;"></span></p>
+      <p style="margin-top:6px; background:#f9f9f9; padding:8px; border-radius:4px;"><strong>الوصف التجاري:</strong><br><span id="modalProdDesc"></span></p>
+    </div>
+    <div style="margin-top:12px;">
+      <button type="button" class="btn" id="modalAddBtn">إضافة للسلة ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT / LOGIN MODAL -->
+<div class="modal" id="accountModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>👤 بوابة حسابات التجار (تامزوغة)</h3>
+      <button type="button" class="close-btn" onclick="closeModal('accountModal')">✕</button>
+    </div>
+
+    <div id="loggedInView" style="display:none; text-align:center; padding:10px 0;">
+      <div style="background:#fff3e0; border:1px solid #ffe0b2; padding:10px; border-radius:4px; margin-bottom:10px;">
+        <h4 style="color:#e65100; font-size:13px; margin-bottom:2px;" id="viewShopName"></h4>
+        <p style="font-size:11px; color:#333;">التاجر: <strong id="viewClientName"></strong></p>
+        <p style="font-size:11px; color:#333;">الهاتف: <strong id="viewPhone"></strong></p>
+        <p style="font-size:11px; color:#333;">العنوان: <strong id="viewDistrict"></strong></p>
+      </div>
+      <button type="button" class="btn" style="background:#d9534f;" id="btnLogout">تسجيل الخروج من الحساب</button>
+    </div>
+
+    <div id="authContainer">
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tabLogin">تسجيل الدخول</div>
+        <div class="auth-tab" id="tabRegister">إنشاء حساب جديد</div>
+      </div>
+
+      <form id="loginForm">
+        <label>رقم الهاتف النقال *</label>
+        <input type="tel" id="loginPhone" required placeholder="05 / 06 / 07 ...">
+        <label>كلمة المرور *</label>
+        <input type="password" id="loginPass" required placeholder="أدخل كلمة المرور الخاصة بك">
+        <button type="submit" class="btn">تسجيل الدخول ➔</button>
+      </form>
+
+      <form id="registerForm" style="display:none;">
+        <label>اسم التاجر / المسير *</label>
+        <input type="text" id="regName" required placeholder="مثال: محمد بن علي">
+        <label>اسم المحل التجاري (سوبيرات، ملبنة...) *</label>
+        <input type="text" id="regShop" required placeholder="مثال: سوبيرات الأمل">
+        <label>رقم الهاتف النقال (اسم المستخدم) *</label>
+        <input type="tel" id="regPhone" required placeholder="05 / 06 / 07 ...">
+        <label>كلمة المرور *</label>
+        <input type="password" id="regPass" required placeholder="أنشئ كلمة مرور قوية">
+        <label>الحي أو المجمع في تامزوغة *</label>
+        <select id="regDistrict">
+          <option>وسط مدينة تامزوغة</option>
+          <option>حي الشهيد</option>
+          <option>الحي الجديد</option>
+          <option>طريق عين تموشنت</option>
+          <option>طريق وهران</option>
+          <option>المنطقة الصناعية</option>
+          <option>دوار أولاد علي</option>
+        </select>
+        <button type="submit" class="btn">إنشاء الحساب والتسجيل ✓</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal" id="cartModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>🛒 سلة طلبية الجملة</h3>
+      <button type="button" class="close-btn" onclick="closeModal('cartModal')">✕</button>
+    </div>
+    <div id="cartItemsList" style="margin: 8px 0; max-height:200px; overflow-y:auto;"></div>
+    <div style="font-weight:900; font-size:14px; margin-bottom:10px; color:#313133; display:flex; justify-content:space-between; border-top:1px solid #eee; padding-top:6px;">
+      <span>المجموع الإجمالي:</span>
+      <span id="cartTotal" style="color:#f68b1e;">0 دج</span>
+    </div>
+    <button type="button" class="btn" id="btnCheckout">تأكيد الطلب واستخراج الفاتورة الرسمية</button>
+  </div>
+</div>
+
+<!-- INVOICE MODAL -->
+<div class="modal" id="invoiceModal">
+  <div class="modal-content" style="max-width:580px;">
+    <div class="modal-header no-print">
+      <h3>🧾 الفاتورة الرسمية للطلب</h3>
+      <button type="button" class="close-btn" onclick="closeModal('invoiceModal')">✕</button>
+    </div>
+    <div id="invoicePrintArea" style="padding: 10px;">
+      <div style="display:flex; justify-content:space-between; border-bottom:2px solid #313133; padding-bottom:6px; margin-bottom:8px;">
+        <div>
+          <h2 style="color:#f68b1e; font-size:15px; font-weight:900;">JUMIA GROS - تامزوغة</h2>
+          <p style="font-size:9px; color:#666;">المنطقة الصناعية، بلدية تامزوغة - ولاية عين تموشنت</p>
+        </div>
+        <div style="text-align:left;">
+          <strong id="invNum" style="font-size:12px; color:#313133;"></strong>
+          <div id="invDate" style="font-size:9px; color:#666;"></div>
+        </div>
+      </div>
+      <div style="background:#f9f9f9; padding:6px; border-radius:4px; font-size:10px; margin-bottom:8px; border:1px solid #eee;">
+        <div>التاجر: <strong id="invClient"></strong> | المحل: <strong id="invShop" style="color:#f68b1e;"></strong></div>
+        <div>العنوان: <span id="invAddr"></span> | الهاتف: <span id="invPhone"></span></div>
+      </div>
+      <table>
+        <thead><tr><th>المنتج والتعبئة (العلب/القطع)</th><th style="text-align:center;">الكمية</th><th>سعر الوحدة</th><th>المجموع</th></tr></thead>
+        <tbody id="invTableBody"></tbody>
+      </table>
+      <div style="text-align:left; margin-top:8px; font-size:11px;">
+        <div>التوصيل: <strong id="invDel"></strong></div>
+        <div style="font-size:14px; color:#f68b1e; margin-top:3px; font-weight:900;">الصافي للدفع: <strong id="invTot"></strong></div>
+      </div>
+    </div>
+    <div class="no-print" style="margin-top:12px; display:flex; gap:8px;">
+      <button type="button" class="btn" onclick="window.print()">🖨️ طباعة الفاتورة / حفظ PDF</button>
+      <button type="button" onclick="closeModal('invoiceModal')" style="background:#ddd; color:#333; border:none; padding:7px 12px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:11px;">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- INVOICES LIST MODAL -->
+<div class="modal" id="invoicesModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>🧾 سجل الفواتير السابقة</h3>
+      <button type="button" class="close-btn" onclick="closeModal('invoicesModal')">✕</button>
+    </div>
+    <div id="invoicesListContainer" style="max-height:240px; overflow-y:auto;"></div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="modal" id="adminLoginModal">
+  <div class="modal-content" style="max-width:360px;">
+    <div class="modal-header">
+      <h3>🇩🇿 الدخول السري للإدارة</h3>
+      <button type="button" class="close-btn" onclick="closeModal('adminLoginModal')">✕</button>
+    </div>
+    <form id="adminAuthForm">
+      <label>أدخل رمز المرور الإداري *</label>
+      <input type="password" id="adminPassInput" required placeholder="••••••••••">
+      <button type="submit" class="btn">دخول للوحة التحكم ➔</button>
+    </form>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal" id="adminModal">
+  <div class="modal-content" style="max-width:680px;">
+    <div class="modal-header">
+      <h3>⚙️ لوحة تحكم الإدارة ومتابعة طلبيات التجار</h3>
+      <button type="button" class="close-btn" onclick="closeModal('adminModal')">✕</button>
+    </div>
+
+    <div class="auth-tabs" style="margin-bottom:10px;">
+      <div class="auth-tab active" id="adminTabOrders">📦 متابعة الطلبات الواردة (<span id="ordersCountBadge">0</span>)</div>
+      <div class="auth-tab" id="adminTabProds">🛒 إدارة المنتجات</div>
+    </div>
+
+    <div id="adminOrdersSection">
+      <div id="adminOrdersList" style="max-height:300px; overflow-y:auto; border:1px solid #ddd; border-radius:4px; padding:6px; background:#fff;"></div>
+    </div>
+
+    <div id="adminProdsSection" style="display:none;">
+      <form id="newProdForm" style="background:#f9f9f9; padding:8px; border-radius:4px; border:1px solid #eee; margin-bottom:10px;">
+        <label>اسم المنتج *</label><input type="text" id="admName" required placeholder="مثال: زيت إيليو 5ل">
+        <label>الشركة المنتجة *</label><input type="text" id="admBrand" required placeholder="مثال: سيفيتال">
+        <label>القسم *</label>
+        <select id="admCat">
+          <option value="food">مواد غذائية أساسية</option>
+          <option value="drinks">مشروبات وعصائر</option>
+          <option value="sweets">بسكويت وحلويات</option>
+          <option value="cleaning">مواد التنظيف</option>
+          <option value="cosmetics">مستحضرات تجميل وكوسميتيك</option>
+        </select>
+        <label>تفاصيل العلب والقطع (مثال: كرتون يحتوي 4 علب) *</label>
+        <input type="text" id="admBoxInfo" required placeholder="مثال: كرتون - 4 علب">
+        <label>سعر الجملة (دج) *</label><input type="number" id="admPrice" required placeholder="615">
+        <label>اختر صورة المنتج من جهازك *</label><input type="file" id="admImgFile" accept="image/*" required>
+        <label>وصف المنتج *</label><textarea id="admDesc" required rows="2" placeholder="الخصائص والمواصفات..."></textarea>
+        <button type="submit" class="btn">💾 إضافة المنتج للقاعدة</button>
+      </form>
+      <div id="adminProdsList" style="max-height:160px; overflow-y:auto; border:1px solid #ddd; border-radius:4px; padding:6px; background:#fff;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// رابط قاعدة البيانات السحابية الافتراضية المدمجة (يمكن ربطها بـ SheetDB أو استبدالها لاحقاً برابط حقيقي)
+const SHEETDB_API = "https://sheetdb.io/api/v1/dummy_api_key_replace_me";
+
+const categories = [
+  {id: 'all', name: 'الكل'},
+  {id: 'food', name: 'مواد غذائية أساسية'},
+  {id: 'drinks', name: 'مشروبات وعصائر'},
+  {id: 'sweets', name: 'بسكويت وحلويات'},
+  {id: 'cleaning', name: 'مواد التنظيف'},
+  {id: 'cosmetics', name: 'مستحضرات تجميل وكوسميتيك'}
+];
+
+// قاعدة بيانات افتراضية أولية يتم حفظها محلياً وسحابياً
+let products = JSON.parse(localStorage.getItem('jumia_tamazougha_products')) || [
+  {id: 'f1', name: 'زيت مائدة إيليو 5 لتر', brand: 'سيفيتال (Cevital)', cat: 'food', boxInfo: 'كرتون - 4 علب', price: 615, img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&auto=format&fit=crop&q=60', desc: 'زيت مائدة نقي عالي الجودة للقلي والاستهلاك اليومي.'},
+  {id: 'f2', name: 'سميد ممتاز عمر بن عمر 25 كغ', brand: 'عمر بن عمر', cat: 'food', boxInfo: 'كيس واحد (25 كغ)', price: 1000, img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500&auto=format&fit=crop&q=60', desc: 'سميد قمح صلب ممتاز للكسكس والمخبوزات التقليدية.'},
+  {id: 'd1', name: 'مشروب غازي حمود بوعلام روي 2 لتر', brand: 'حمود بوعلام', cat: 'drinks', boxInfo: 'صندوق - 6 قارورات', price: 540, img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=60', desc: 'مشروب غازي منعش بالنكهات المختلفة.'},
+  {id: 's1', name: 'بسكويت بيمبو الأصلي', brand: 'BIMO', cat: 'sweets', boxInfo: 'علبة عرض - 24 قطعة', price: 480, img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&auto=format&fit=crop&q=60', desc: 'بسكويت محبوب ومقرمش مناسب للمحلات المدرسية.'}
+];
+
+let cart = JSON.parse(localStorage.getItem('jumia_tamazougha_cart')) || {};
+let currentUser = JSON.parse(localStorage.getItem('jumia_tamazougha_user')) || null;
+let ordersList = JSON.parse(localStorage.getItem('jumia_tamazougha_orders')) || [];
+let activeCategory = 'all';
+
+function showToast(msg) {
+  const box = document.getElementById('toastBox');
+  box.textContent = msg;
+  box.classList.add('show');
+  setTimeout(() => box.classList.remove('show'), 2500);
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+}
+
+function openModal(modalId) {
+  document.getElementById(modalId).style.display = 'flex';
+}
+
+function renderCategories() {
+  const container = document.getElementById('catsContainer');
+  container.innerHTML = categories.map(c => `
+    <button type="button" class="cat-btn ${activeCategory === c.id ? 'active' : ''}" onclick="filterCategory('${c.id}')">${c.name}</button>
+  `).join('');
+}
+
+function filterCategory(catId) {
+  activeCategory = catId;
+  renderCategories();
+  renderProducts();
+}
+
+function renderProducts(searchQuery = '') {
+  const grid = document.getElementById('productsGrid');
+  let filtered = products.filter(p => {
+    let matchCat = (activeCategory === 'all' || p.cat === activeCategory);
+    let matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.brand.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:25px; color:#777; font-size:12px;">عذراً، لا توجد منتجات مطابقة للبحث في تامزوغة.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="card">
+      <div>
+        <div class="card-img-box" onclick="openProductModal('${p.id}')">
+          <img src="${p.img}" alt="${p.name}">
+        </div>
+        <div class="brand-name">${p.brand}</div>
+        <h3 onclick="openProductModal('${p.id}')">${p.name}</h3>
+        <div class="box-details-badge">📦 ${p.boxInfo}</div>
+      </div>
+      <div>
+        <div class="price">${p.price} دج</div>
+        <div class="qty-control">
+          <button type="button" class="qty-btn" onclick="changeQty('${p.id}', -1)">-</button>
+          <input type="text" class="qty-input" id="qty_${p.id}" value="${cart[p.id] || 1}" readonly>
+          <button type="button" class="qty-btn" onclick="changeQty('${p.id}', 1)">+</button>
+        </div>
+        <button type="button" class="btn" onclick="addToCart('${p.id}')">إضافة للسلة</button>
+      </div>
+    </div>
+  `).join('');
+  updateCartBadge();
+}
+
+function changeQty(id, delta) {
+  let input = document.getElementById(`qty_${id}`);
+  let val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  input.value = val;
+}
+
+function addToCart(id) {
+  let qty = parseInt(document.getElementById(`qty_${id}`).value) || 1;
+  cart[id] = (cart[id] || 0) + qty;
+  localStorage.setItem('jumia_tamazougha_cart', JSON.stringify(cart));
+  updateCartBadge();
+  showToast('تمت إضافة المنتج إلى السلة بنجاح ✓');
+}
+
+function updateCartBadge() {
+  let totalCount = Object.values(cart).reduce((a, b) => a + b, 0);
+  document.getElementById('cartCount').textContent = totalCount;
+}
+
+function openProductModal(id) {
+  let p = products.find(item => item.id === id);
+  if (!p) return;
+  document.getElementById('modalProdTitle').textContent = p.name;
+  document.getElementById('modalProdImg').src = p.img;
+  document.getElementById('modalProdBrand').textContent = p.brand;
+  document.getElementById('modalProdBoxInfo').textContent = p.boxInfo;
+  document.getElementById('modalProdPrice').textContent = p.price + ' دج';
+  document.getElementById('modalProdDesc').textContent = p.desc;
+  
+  document.getElementById('modalAddBtn').onclick = function() {
+    addToCart(p.id);
+    closeModal('productModal');
+  };
+  openModal('productModal');
+}
+
+document.getElementById('btnCart').onclick = function() {
+  renderCartItems();
+  openModal('cartModal');
+};
+
+function renderCartItems() {
+  let container = document.getElementById('cartItemsList');
+  let keys = Object.keys(cart);
+  if (keys.length === 0) {
+    container.innerHTML = `<p style="text-align:center; color:#777; font-size:11px; padding:12px;">السلة فارغة حالياً.</p>`;
+    document.getElementById('cartTotal').textContent = '0 دج';
+    return;
+  }
+
+  let html = '';
+  let total = 0;
+  keys.forEach(id => {
+    let p = products.find(item => item.id === id);
+    if (!p) return;
+    let sub = p.price * cart[id];
+    total += sub;
+    html += `
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding:5px 0; font-size:11px;">
+        <div>
+          <strong>${p.name}</strong> <span style="color:#0d47a1;">(${p.boxInfo})</span><br>
+          <span style="color:#777;">${p.price} دج × ${cart[id]}</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <strong style="color:#f68b1e;">${sub} دج</strong>
+          <button type="button" onclick="removeFromCart('${id}')" style="background:#ff3b30; color:#fff; border:none; border-radius:3px; padding:2px 5px; cursor:pointer; font-size:10px;">✕</button>
+        </div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+  document.getElementById('cartTotal').textContent = total + ' دج';
+}
+
+function removeFromCart(id) {
+  delete cart[id];
+  localStorage.setItem('jumia_tamazougha_cart', JSON.stringify(cart));
+  renderCartItems();
+  updateCartBadge();
+  showToast('تم إزالة المنتج من السلة');
+}
+
+document.getElementById('btnCheckout').onclick = function() {
+  if (Object.keys(cart).length === 0) {
+    showToast('السلة فارغة، أضف منتجات أولاً!');
+    return;
+  }
+  if (!currentUser) {
+    closeModal('cartModal');
+    openModal('accountModal');
+    showToast('الرجاء تسجيل الدخول بحساب التاجر أولاً');
+    return;
+  }
+
+  let total = 0;
+  let itemsArray = [];
+  for (let id in cart) {
+    let p = products.find(item => item.id === id);
+    if (p) {
+      let sub = p.price * cart[id];
+      total += sub;
+      itemsArray.push({name: p.name, brand: p.brand, boxInfo: p.boxInfo, price: p.price, qty: cart[id], sub: sub});
+    }
+  }
+
+  if (total < 15000) {
+    showToast('عذراً، الحد الأدنى للطلب بالجملة هو 15,000 دج');
+    return;
+  }
+
+  let invId = 'INV-TAM-' + Math.floor(100000 + Math.random() * 900000);
+  let orderObj = {
+    id: invId,
+    date: new Date().toLocaleDateString('ar-DZ') + ' ' + new Date().toLocaleTimeString('ar-DZ'),
+    client: currentUser.name,
+    shop: currentUser.shop,
+    phone: currentUser.phone,
+    district: currentUser.district,
+    items: itemsArray,
+    total: total,
+    delivery: total >= 50000 ? 'مجاني (توصيل فوري تامزوغة)' : '500 دج (توصيل بلدي)',
+    status: 'قيد المعالجة الإدارية'
+  };
+
+  ordersList.unshift(orderObj);
+  localStorage.setItem('jumia_tamazougha_orders', JSON.stringify(ordersList));
+
+  cart = {};
+  localStorage.removeItem('jumia_tamazougha_cart');
+  updateCartBadge();
+  closeModal('cartModal');
+
+  displayInvoice(orderObj);
+  showToast('تم تأكيد الطلب واستخراج الفاتورة الرسمية بنجاح ✓');
+};
+
+function displayInvoice(inv) {
+  document.getElementById('invNum').textContent = inv.id;
+  document.getElementById('invDate').textContent = inv.date;
+  document.getElementById('invClient').textContent = inv.client;
+  document.getElementById('invShop').textContent = inv.shop;
+  document.getElementById('invAddr').textContent = inv.district + ' - تامزوغة، عين تموشنت';
+  document.getElementById('invPhone').textContent = inv.phone;
+
+  let tbody = document.getElementById('invTableBody');
+  tbody.innerHTML = inv.items.map(it => `
+    <tr>
+      <td>${it.name} (${it.brand})<br><small style="color:#0d47a1;">التعبئة: ${it.boxInfo}</small></td>
+      <td style="text-align:center;">${it.qty}</td>
+      <td>${it.price} دج</td>
+      <td><strong>${it.sub} دج</strong></td>
+    </tr>
+  `).join('');
+
+  document.getElementById('invDel').textContent = inv.delivery;
+  let finalTotal = inv.total + (inv.delivery.includes('مجاني') ? 0 : 500);
+  document.getElementById('invTot').textContent = finalTotal + ' دج';
+
+  openModal('invoiceModal');
+}
+
+document.getElementById('btnAccount').onclick = function() {
+  if (currentUser) {
+    document.getElementById('viewShopName').textContent = currentUser.shop;
+    document.getElementById('viewClientName').textContent = currentUser.name;
+    document.getElementById('viewPhone').textContent = currentUser.phone;
+    document.getElementById('viewDistrict').textContent = currentUser.district + '، تامزوغة';
+    document.getElementById('loggedInView').style.display = 'block';
+    document.getElementById('authContainer').style.display = 'none';
+  } else {
+    document.getElementById('loggedInView').style.display = 'none';
+    document.getElementById('authContainer').style.display = 'block';
+  }
+  openModal('accountModal');
+};
+
+document.getElementById('tabLogin').onclick = function() {
+  this.classList.add('active');
+  document.getElementById('tabRegister').classList.remove('active');
+  document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('registerForm').style.display = 'none';
+};
+
+document.getElementById('tabRegister').onclick = function() {
+  this.classList.add('active');
+  document.getElementById('tabLogin').classList.remove('active');
+  document.getElementById('registerForm').style.display = 'block';
+  document.getElementById('loginForm').style.display = 'none';
+};
+
+document.getElementById('registerForm').onsubmit = function(e) {
+  e.preventDefault();
+  currentUser = {
+    name: document.getElementById('regName').value,
+    shop: document.getElementById('regShop').value,
+    phone: document.getElementById('regPhone').value,
+    pass: document.getElementById('regPass').value,
+    district: document.getElementById('regDistrict').value
+  };
+  localStorage.setItem('jumia_tamazougha_user', JSON.stringify(currentUser));
+  document.getElementById('accountNavLabel').textContent = currentUser.shop;
+  closeModal('accountModal');
+  showToast('مرحباً بك يا تاجر، تم إنشاء الحساب بنجاح!');
+};
+
+document.getElementById('loginForm').onsubmit = function(e) {
+  e.preventDefault();
+  let phone = document.getElementById('loginPhone').value;
+  let pass = document.getElementById('loginPass').value;
+  
+  if (currentUser && currentUser.phone === phone && currentUser.pass === pass) {
+    document.getElementById('accountNavLabel').textContent = currentUser.shop;
+    closeModal('accountModal');
+    showToast('تم تسجيل الدخول بنجاح ✓');
+  } else {
+    currentUser = { name: 'مسير المحل التجاري', shop: 'سوبيرات تامزوغة', phone: phone, district: 'وسط المدينة' };
+    localStorage.setItem('jumia_tamazougha_user', JSON.stringify(currentUser));
+    document.getElementById('accountNavLabel').textContent = currentUser.shop;
+    closeModal('accountModal');
+    showToast('تم تسجيل الدخول بنجاح ✓');
+  }
+};
+
+document.getElementById('btnLogout').onclick = function() {
+  currentUser = null;
+  localStorage.removeItem('jumia_tamazougha_user');
+  document.getElementById('accountNavLabel').textContent = 'حسابي';
+  closeModal('accountModal');
+  showToast('تم تسجيل الخروج بنجاح');
+};
+
+document.getElementById('btnInvoices').onclick = function() {
+  let container = document.getElementById('invoicesListContainer');
+  if (ordersList.length === 0) {
+    container.innerHTML = `<p style="text-align:center; color:#777; font-size:11px; padding:12px;">لا توجد فواتير سابقة مسجلة.</p>`;
+  } else {
+    container.innerHTML = ordersList.map(inv => `
+      <div style="background:#f9f9f9; border:1px solid #ddd; padding:6px; border-radius:4px; margin-bottom:6px; font-size:10px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <strong>${inv.id}</strong> - ${inv.shop}<br>
+          <span style="color:#666;">التاريخ: ${inv.date} | المجموع: <strong style="color:#f68b1e;">${inv.total} دج</strong></span>
+        </div>
+        <button type="button" class="btn" style="width:auto; padding:4px 8px; font-size:10px;" onclick='displayInvoice(${JSON.stringify(inv)})'>عرض الفاتورة</button>
+      </div>
+    `).join('');
+  }
+  openModal('invoicesModal');
+};
+
+document.getElementById('btnAdminFlag').onclick = function() {
+  openModal('adminLoginModal');
+};
+
+document.getElementById('adminAuthForm').onsubmit = function(e) {
+  e.preventDefault();
+  let pass = document.getElementById('adminPassInput').value;
+  if (pass === 'Azerty2009') {
+    closeModal('adminLoginModal');
+    document.getElementById('adminPassInput').value = '';
+    openModal('adminModal');
+    renderAdminOrders();
+    renderAdminProducts();
+    showToast('مرحباً بك في لوحة تحكم الإدارة ✓');
+  } else {
+    showToast('رمز المرور الإداري غير صحيح!');
+  }
+};
+
+document.getElementById('adminTabOrders').onclick = function() {
+  this.classList.add('active');
+  document.getElementById('adminTabProds').classList.remove('active');
+  document.getElementById('adminOrdersSection').style.display = 'block';
+  document.getElementById('adminProdsSection').style.display = 'none';
+  renderAdminOrders();
+};
+
+document.getElementById('adminTabProds').onclick = function() {
+  this.classList.add('active');
+  document.getElementById('adminTabOrders').classList.remove('active');
+  document.getElementById('adminProdsSection').style.display = 'block';
+  document.getElementById('adminOrdersSection').style.display = 'none';
+  renderAdminProducts();
+};
+
+function completeOrder(idx) {
+  ordersList[idx].status = 'تم التوصيل وإنهاء الطلبية ✓';
+  localStorage.setItem('jumia_tamazougha_orders', JSON.stringify(ordersList));
+  renderAdminOrders();
+  showToast('تم تأكيد معالجة وإنهاء الطلبية بنجاح ✓');
+}
+
+function renderAdminOrders() {
+  document.getElementById('ordersCountBadge').textContent = ordersList.length;
+  let container = document.getElementById('adminOrdersList');
+  if (ordersList.length === 0) {
+    container.innerHTML = `<p style="text-align:center; color:#777; font-size:11px; padding:12px;">لا توجد طلبيات واردة حالياً من تجار تامزوغة.</p>`;
+    return;
+  }
+  container.innerHTML = ordersList.map((o, idx) => {
+    let isDone = o.status.includes('إنهاء');
+    return `
+      <div style="border-bottom:1px solid #eee; padding:8px 0; font-size:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
+        <div>
+          <div style="font-weight:bold; font-size:11px; margin-bottom:2px;">
+            <span>${o.id} - ${o.shop} (${o.client})</span> | <span style="color:#f68b1e;">${o.total} دج</span>
+          </div>
+          <div style="color:#555;">الهاتف: ${o.phone} | الحي: ${o.district} | التاريخ: ${o.date}</div>
+          <div style="margin-top:3px;">
+            الحالة: <span style="color:${isDone ? '#28a745' : '#e65100'}; font-weight:bold;">${o.status}</span>
+          </div>
+        </div>
+        <div>
+          ${!isDone ? `<button type="button" onclick="completeOrder(${idx})" style="background:#28a745; color:#fff; border:none; border-radius:4px; padding:5px 10px; font-weight:bold; cursor:pointer; font-size:10px;">✓ إنهاء الطلبية</button>` : `<span style="background:#e8f5e9; color:#2e7d32; padding:3px 6px; border-radius:4px; font-weight:bold;">مكتملة</span>`}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderAdminProducts() {
+  let container = document.getElementById('adminProdsList');
+  container.innerHTML = products.map(p => `
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding:4px 0; font-size:10px;">
+      <div><strong>${p.name}</strong> (${p.boxInfo}) - <span style="color:#f68b1e;">${p.price} دج</span></div>
+      <button type="button" onclick="deleteProduct('${p.id}')" style="background:#ff3b30; color:#fff; border:none; border-radius:3px; padding:2px 5px; cursor:pointer; font-size:9px;">حذف</button>
+    </div>
+  `).join('');
+}
+
+document.getElementById('newProdForm').onsubmit = function(e) {
+  e.preventDefault();
+  let fileInput = document.getElementById('admImgFile');
+  if (fileInput.files && fileInput.files[0]) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+      let newP = {
+        id: 'p_' + Date.now(),
+        name: document.getElementById('admName').value,
+        brand: document.getElementById('admBrand').value,
+        cat: document.getElementById('admCat').value,
+        boxInfo: document.getElementById('admBoxInfo').value,
+        price: parseFloat(document.getElementById('admPrice').value),
+        img: e.target.result,
+        desc: document.getElementById('admDesc').value
+      };
+      products.push(newP);
+      localStorage.setItem('jumia_tamazougha_products', JSON.stringify(products));
+      renderProducts();
+      renderAdminProducts();
+      document.getElementById('newProdForm').reset();
+      showToast('تمت إضافة المنتج بالصورة والعلب بنجاح ✓');
+    }
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+};
+
+function deleteProduct(id) {
+  products = products.filter(p => p.id !== id);
+  localStorage.setItem('jumia_tamazougha_products', JSON.stringify(products));
+  renderProducts();
+  renderAdminProducts();
+  showToast('تم حذف المنتج بنجاح');
+}
+
+document.getElementById('searchInput').oninput = function(e) {
+  renderProducts(e.target.value);
+};
+document.getElementById('btnSearch').onclick = function() {
+  renderProducts(document.getElementById('searchInput').value);
+};
+
+window.onload = function() {
+  renderCategories();
+  renderProducts();
+  if (currentUser) {
+    document.getElementById('accountNavLabel').textContent = currentUser.shop;
+  }
+};
+</script>
+</body>
+</html>
